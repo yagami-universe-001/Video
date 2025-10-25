@@ -1,0 +1,8 @@
+# Python dependencies for Video Encoder Bot
+pyrogram==2.0.106
+TgCrypto
+motor
+ffmpeg-python
+pymongo
+python-dotenv
+requests
