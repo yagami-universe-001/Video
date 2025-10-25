@@ -1,0 +1,27 @@
+# Docker Compose for Video Encoder Bot + MongoDB
+version: "3.9"
+
+services:
+  bot:
+    image: video-editor-bot:latest
+    container_name: video-editor-bot
+    build: .
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data   # store temporary downloads
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:6.0
+    container_name: video-bot-mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo_data:/data/db
